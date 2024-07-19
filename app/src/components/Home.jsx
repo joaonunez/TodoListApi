@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import tareas from "../scripts/tareas";
 
+const apiUrl = 'https://playground.4geeks.com/todo/users/joaodev';
 export const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [tareasArray, setTareas] = useState(tareas);
