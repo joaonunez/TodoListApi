@@ -51,6 +51,24 @@ export const Home = () => {
       .catch((error) => console.log("Error:", error.message));
   };
 
+  const borrarTarea = (idTarea) => {
+    fetch(`https://playground.4geeks.com/todo/todos/${idTarea}`, {
+      method: "DELETE",
+      headers: {
+        "accept": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status === 204) {
+          console.log('Tarea eliminada');
+          getTareas();
+        } else {
+          throw new Error(`Error al eliminar la tarea, estado: ${response.status}`);
+        }
+      })
+      .catch((error) => console.log("Error:", error.message));
+  };
+
   return (
     <div className="container">
       <h1>Gestión De Tareas</h1>
@@ -75,6 +93,7 @@ export const Home = () => {
             <FontAwesomeIcon
               icon={faTrash}
               className="fa-trash"
+              onClick={() => borrarTarea(tarea.id)}
             />
           </li>
         ))}
