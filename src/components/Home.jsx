@@ -15,7 +15,13 @@ export const Home = () => {
       },
     })
     .then((response) => response.json())
-    .then((data) => setTareas(data.todos))
+    .then((data) => {
+      if (data && data.todos) {
+        setTareas(data.todos);
+      } else {
+        console.error("El formato de los datos es incorrecto", data);
+      }
+    })
     .catch((error) => console.log(error));
   };
 
